@@ -39,7 +39,7 @@ const UserSchema = mongoose.Schema({
     latitude: String,
   },
   friends: [{
-    type: Schema.Type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   }],
   posts: [{

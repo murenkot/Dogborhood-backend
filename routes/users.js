@@ -11,7 +11,10 @@ router.get('/', ctrl.users.showAllUsers);
 router.get('/:id', ctrl.users.showById);
 
 //PUT Update Profile
-// router.put('/:id/update', ctrl.users.update);
+router.put('/:id/update', ctrl.users.update);
+
+// DELETE User account
+router.delete('/:id', ctrl.users.deleteUser);
 
 
 module.exports = router;

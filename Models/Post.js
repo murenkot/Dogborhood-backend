@@ -6,17 +6,25 @@ const PostSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    title: {
+        type: String,
+        required: [true, 'Title of event is required']
+    },
+    body: {
+        type: String,
+        required: [true, 'Description of event is required']
+    },
     timeStamp: {
         type: Date,
         default: Date.now,
     },
     startTime: {
         type: Date,
-        required: [true, 'Start Time of event is required']
+        // required: [true, 'Start Time of event is required']
     },
     endTime: {
         type: Date,
-        required: [true, 'End Time of event is required']
+        // required: [true, 'End Time of event is required']
     },
     comments: [{
         type: Schema.Types.ObjectId,
@@ -30,6 +38,7 @@ const PostSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     }],
+
 })
 
 const Post = mongoose.model('Post', PostSchema);

@@ -53,6 +53,8 @@ const update = (req, res) => {
             foundUser.address = req.body.address
             foundUser.avatar = req.body.avatar;
             foundUser.coordinates = req.body.coordinates;
+            foundUser.lng = req.body.lng,
+            foundUser.lat= req.body.lat,
 
         foundUser.save((err, updatedUser)=> {
             if (err) console.log(err);
@@ -76,10 +78,51 @@ const deleteUser = (req, res) => {
     });
 };
 
+const findNearby = (req, res) => {
+    console.log(req.body);
+    let longitude = req.body.lng;
+    let longitude_min = longitude - 0.07
+    let longitude_max = longitude + 0.07
+
+    let latitude = req.body.lat;
+    let latitude_min = latitude - 0.07
+    let latitude_max = latitude + 0.07
+
+    db.User.find(
+        {$and: 
+            // [ {lat: { $range: [ latitude_min, latitude_max ]}, 
+            //     lng: { $range: [ longitude_min, longitude_max ]}
+            // }]
+            [
+                {lat: { $gte: longitude_min}},
+                {lat: { $lte: longitude_max}},
+            ]
+
+            // {coordinates: 
+            //     {longitude : { $gte: longitude_min}}},
+            //     {coordinates: 
+            //         {longitude : { $gte: longitude_min}}}, 
+                // {coordinates: 
+                //     {longitude : { $lte: longitude_max }}}, 
+                // {coordinates: 
+                //     {latitude: { $range: [ latitude_min, latitude_max ]}}}
+        
+        },
+            (err, foundUsers)=>{
+                if (err) console.log(err);
+                res.status(200).json({
+                    status: 200,
+                    data: foundUsers
+                });
+
+            })
+}
+
 
 module.exports = {
     showAllUsers,
     showById,
     update,
     deleteUser,
+    findNearby,
 }; 

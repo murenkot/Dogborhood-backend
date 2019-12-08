@@ -2,8 +2,8 @@ const db = require('../models');
 
 const addPost = (req, res) => {
     console.log(req.body);
-    // const postData = {...req.body, author: req.session.currentUser.id};
-    const postData = {...req.body};
+    const postData = {...req.body, author: req.session.currentUser.id};
+    // const postData = {...req.body};
 
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);

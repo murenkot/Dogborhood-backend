@@ -34,9 +34,25 @@ const UserSchema = mongoose.Schema({
     state: String,
     zipcode: String,
   },
+  street: {
+    type: String,
+    require: [true, 'Street is required'],
+  },
+  city: {
+    type: String,
+    require: [true, 'City is required'],
+  },
+  state: {
+    type: String,
+    require: [true, 'State is required'],
+  },
+  zipcode: {
+    type: String,
+    require: [true, 'Zipcode is required'],
+  },
   coordinates: {
-    longitude: String,
-    latitude: String,
+    longitude: Number,
+    latitude: Number,
   },
   friends: [{
     type: Schema.Types.ObjectId,
@@ -46,6 +62,12 @@ const UserSchema = mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Post'
   }],
+  lng: {
+    type: Number
+  },
+  lat: {
+    type: Number
+  }
   
 });
 

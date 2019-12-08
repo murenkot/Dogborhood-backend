@@ -26,10 +26,16 @@ const register = (req, res) => {
                         state: req.body.state,
                         zipcode: req.body.zipcode,
                     },
-                    coordinates: {
-                        longitude: Number(req.body.latLng.lng),
-                        latitude: Number(req.body.latLng.lat),
-                    }
+                    street: req.body.street,
+                    city: req.body.city,
+                    state: req.body.state,
+                    zipcode: req.body.zipcode,
+                    // coordinates: {
+                    //     longitude: Number(req.body.latLng.lng),
+                    //     latitude: Number(req.body.latLng.lat),
+                    // },
+                    lng: req.body.lng,
+                    lat: req.body.lat,
                 }
         
                 db.User.create(newUser, (err, savedUser) => {

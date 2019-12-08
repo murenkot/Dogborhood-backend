@@ -8,10 +8,13 @@ const ctrl = require('../controllers')
 router.get('/', ctrl.users.showAllUsers);
 
 //GET Profile by ID
-router.get('/:id', ctrl.users.showById);
+router.get('/byId/:id', ctrl.users.showById);
+
+// GET User by distance
+router.get('/nearby', ctrl.users.findNearby);
 
 //PUT Update Profile
-router.put('/:id/update', ctrl.users.update);
+router.put('/update/:id', ctrl.users.update);
 
 // DELETE User account
 router.delete('/:id', ctrl.users.deleteUser);
